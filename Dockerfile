@@ -14,11 +14,8 @@ WORKDIR /app
 # Copy requirements first for better caching
 COPY requirements.txt .
 
-# Install Python dependencies
+# Install Python dependencies (includes litellm[proxy]==1.74.3)
 RUN pip install --no-cache-dir -r requirements.txt
-
-# Install LiteLLM with specific version
-RUN pip install litellm[proxy]==1.74.3
 
 # Copy application files
 COPY . .
