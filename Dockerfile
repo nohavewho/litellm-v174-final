@@ -29,5 +29,5 @@ USER litellm
 # Expose port
 EXPOSE 4000
 
-# Run the application (same as working v1.70.0)
-CMD ["sh", "-c", "python /app/gemini_filter_patch.py && litellm --config config_fixed_cache.yaml --host 0.0.0.0 --port 4000"]
+# DEBUG: Print environment variables before starting
+CMD ["sh", "-c", "echo 'DEBUG: DATABASE_URL=' && echo $DATABASE_URL && echo 'DEBUG: All env vars:' && env | grep -E '(DATABASE|REDIS|LITELLM)' && python /app/gemini_filter_patch.py && litellm --config config_fixed_cache.yaml --host 0.0.0.0 --port 4000"]
