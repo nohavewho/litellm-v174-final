@@ -6,6 +6,7 @@ RUN apt-get update && apt-get install -y \
     gcc \
     g++ \
     make \
+    curl \
     && rm -rf /var/lib/apt/lists/*
 
 # Set working directory
@@ -22,6 +23,9 @@ RUN pip install litellm[proxy]==1.74.3
 
 # Copy application files
 COPY . .
+
+# Generate Prisma client
+RUN prisma generate --schema=./litellm/proxy/cli/prisma/schema.prisma
 
 # Create non-root user
 RUN useradd -m -u 1000 litellm && chown -R litellm:litellm /app
