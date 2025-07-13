@@ -1,0 +1,26 @@
+model_list: []
+store_model_in_db: true
+default_fallbacks: []
+
+cache:
+  type: redis
+  host: ${REDIS_HOST}
+  port: ${REDIS_PORT}
+  password: ${REDIS_PASSWORD}
+  ssl: true
+  
+litellm_settings:
+  set_verbose: true
+  drop_params: true
+  
+general_settings:
+  completion_model: gpt-3.5-turbo
+  disable_spend_logs: false
+  master_key: ${LITELLM_MASTER_KEY}
+  database_url: ${DATABASE_URL}
+
+router_settings:
+  routing_strategy: simple-shuffle
+  redis_host: ${REDIS_HOST}
+  redis_port: ${REDIS_PORT}
+  redis_password: ${REDIS_PASSWORD}
